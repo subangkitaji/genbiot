@@ -5,9 +5,9 @@
             <div class="nav-link">
             <div class="profile-image">
                 @hasrole('super-admin')
-                 <img src="{{ asset('assets/images/' .Auth()->user()->username. '.png') }}" alt="image"/>                
+                 <img src="{{ asset('public/assets/images/' .Auth()->user()->username. '.png') }}" alt="image"/>                
                 @else
-                    <img src="{{ asset('assets/images/user.png') }}" alt="admin">
+                    <img src="{{ asset('public/assets/images/user.png') }}" alt="admin">
                 @endhasrole
                 <span class="online-status online"></span> <!--change class online to offline or busy as needed-->
             </div>

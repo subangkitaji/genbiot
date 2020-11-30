@@ -29,7 +29,7 @@
 
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
           @hasrole('super-admin')
-            <a href="#" style="text-decoration: none;">
+            <a href="{{ url('/dashboard/register') }}" style="text-decoration: none;">
                 <div class="dropdown-item">
                     <p class="mb-0 font-weight-normal float-left">
                         <i class="icon-settings"></i>

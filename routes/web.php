@@ -18,3 +18,5 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::middleware('role:super-admin')->get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::middleware('role:super-admin')->get('/dashboard/register', 'UserController@index');
+Route::middleware('role:super-admin')->post('/dashboard/register/save', 'UserController@save');

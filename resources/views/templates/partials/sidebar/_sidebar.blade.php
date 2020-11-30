@@ -29,10 +29,17 @@
             </a>
             <div class="collapse" id="drop" style="">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link active" href="index.html">Genbiot 1<span class="badge badge-success">on</span></a></li>
-                  <li class="nav-item"> <a class="nav-link" href="genbiot2.html">Genbiot 2</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="genbiot3.html">Genbiot 3</a></li>
+                @hasrole('super-admin')
+                  <li class="nav-item"> <a class="nav-link active" href="{{ route('dashboard') }}">Genbiot 1<span class="badge badge-success">on</span></a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#">Genbiot 2</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#">Genbiot 3</a></li>
+                @else
+                  <li class="nav-item"> <a class="nav-link active" href="{{ route('home') }}">Genbiot 1<span class="badge badge-success">on</span></a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#">Genbiot 2</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="#">Genbiot 3</a></li>
+                @endhasrole
                 </ul>
+
             </div>
         </li>
         

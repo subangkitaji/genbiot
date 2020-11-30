@@ -13,7 +13,14 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.index');
+        $data['users'] = User::role('admin')->get();
+        return view('user.index')->with($data);
+    }
+
+    public function edit($id)
+    {
+        $data['users'] =User::findOrFail($id);
+        return view('user.edit')->with($data);
     }
 
     public function save(Request $request)
@@ -32,9 +39,38 @@ class UserController extends Controller
         $user->assignRole('admin');
         $user->save();
 
+        
         return redirect()->back();
-        alert('berhasil menambah data');
 
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $request->validate([
+            'username'   => 'required',
+            'name'       => 'required',
+        ]);
+        $user->username = $request->input('username');
+        $user->name = $request->input('name');
+        $user->update();
+        
+        return redirect('dashboard/register');
+    }
+
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        if(!empty($user))
+        {
+            $user->delete();
+            
+            return redirect()->back();
+        }
+        else {
+          
+            return redirect()->back();
+        }
     }
     
 }

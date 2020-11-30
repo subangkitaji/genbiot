@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <nav aria-label="breadcrumb" role="navigation">
             <ol class="breadcrumb bg-light">
-                <li class="breadcrumb-item active" aria-current="page">Data User</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Admin</li>
             </ol>
         </nav>
 
@@ -12,8 +12,8 @@
             <div class="col-md-4 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title">Form User</h6>
-                        <p id="ket-form" class="card-description">Form Tambah Data User</p>
+                        <h6 class="card-title">Form Admin</h6>
+                        <p id="ket-form" class="card-description">Form Tambah Data Admin</p>
                         <hr />
 
                         <form method="post" action="{{url('dashboard/register/save')}}">
@@ -65,28 +65,11 @@
                     <div class="card-body">
                         <h6 class="card-title">Data User</h6>
                         <hr />
-
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Cari</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="search" class="form-control" name="search"></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" onclick="searchData()"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-
-
                         <div class="table-responsive">
                             @php
                                 $no = 1;
                             @endphp
-                            <table id="table-user" class="table table-striped table-hover table-sm" width="100%">
+                            <table id="user-table" class="table table-striped table-hover table-sm" width="100%" >
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -95,6 +78,29 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                @if (!@empty($users))
+                                @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $no++}}</td>
+                                    <td>{{$user->username}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>
+                                        <a href="{{ url('dashboard/register/edit/' . $user->id) }}" class="success p-0 edit" >
+                                        <i class="fa fa-pencil text-success font-medium-3 mr-2"></i>
+                                        </a>
+                                        <a onclick="return confirm('Are you sure?')" href="{{ url('dashboard/register/delete/' . $user->id) }}">
+                                            <i class="fa fa-trash text-danger font-medium-3 mr-2"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="8" class="text-center"><i>Tidak Ada Data</i></td>
+                                </tr>
+                                @endif
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -107,7 +113,11 @@
 
 @section('js')
     <script>
-        
+          $(document).ready(function() {
+            $('#user-table').DataTable( {
+                "pagingType": "full_numbers"
+            } );
+        } );
     </script>
 @endsection
 

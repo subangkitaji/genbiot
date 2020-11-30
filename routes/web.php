@@ -20,3 +20,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::middleware('role:super-admin')->get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::middleware('role:super-admin')->get('/dashboard/register', 'UserController@index');
 Route::middleware('role:super-admin')->post('/dashboard/register/save', 'UserController@save');
+Route::middleware('role:super-admin')->get('/dashboard/register/delete/{id}', 'UserController@delete');
+Route::middleware('role:super-admin')->get('/dashboard/register/edit/{id}', 'UserController@edit');
+Route::middleware('role:super-admin')->post('/dashboard/register/update/{id}', 'UserController@update');

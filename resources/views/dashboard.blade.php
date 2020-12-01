@@ -70,7 +70,7 @@
                   <div class="d-flex align-items-center justify-content-md-center">
                     <i class="fa fa-thermometer-1 icon-lg text-primary"></i>
                     <div class="ml-3">
-                      <p class="mb-0">Suhu Kolektor</p>
+                      <p class="mb-0">Suhu R.Sistem</p>
                       <h6>25 &#8451;</h6>
                     </div>
                     </div>

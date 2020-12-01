@@ -15,6 +15,7 @@ class CreateBmpTable extends Migration
     {
         Schema::create('bmp', function (Blueprint $table) {
             $table->id();
+            $table->float('bmp');
             $table->timestamps();
         });
     }

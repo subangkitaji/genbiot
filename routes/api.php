@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/sreaktor', 'SuhureaktorController@create');
+Route::post('/jarak', 'JarakController@create');

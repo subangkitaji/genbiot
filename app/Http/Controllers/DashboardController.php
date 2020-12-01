@@ -23,6 +23,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $data['users'] = User::role()->get();
+        return view('dashboard')->with($data);
     }
 }

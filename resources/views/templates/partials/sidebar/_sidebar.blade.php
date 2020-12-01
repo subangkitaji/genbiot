@@ -19,7 +19,6 @@
                     {{ Auth()->user()->roles->pluck('name') }}
                 </p>
             </div>
-            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#drop" aria-expanded="false" aria-controls="dashboard">

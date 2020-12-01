@@ -63,7 +63,7 @@
             <div class="col-md-8 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title">Data User</h6>
+                        <h6 class="card-title">Data Admin</h6>
                         <hr />
                         <div class="table-responsive">
                             @php

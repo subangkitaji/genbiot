@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('public/assets/node_modules/mdi/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" href="{{ asset('public/assets/node_modules/simple-line-icons/css/simple-line-icons.css') }}">
   <link rel="stylesheet" href="{{ asset('public/assets/node_modules/flag-icon-css/css/flag-icon.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('public/assets/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css')}}">
+
   
   <!-- endinject -->
   <!-- plugin css for this page -->

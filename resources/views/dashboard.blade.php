@@ -137,7 +137,6 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/js/dashboard.js')}}"></script>
     <script>
         $(function(){
             $("#dashboard").addClass('active');
@@ -180,6 +179,8 @@
                 }
             }
         });
+
+  
     </script>
 @endsection
 

@@ -53,21 +53,6 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex align-items-center justify-content-md-center">
-                    <i class="fa fa-free-code-camp icon-lg text-danger"></i>
-                    <div class="ml-3">
-                      <p class="mb-0">Kondisi Biogas</p>
-                      <h6>Tidak Normal</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-md-center">
                     <i class="fa fa-thermometer-1 icon-lg text-primary"></i>
                     <div class="ml-3">
                       <p class="mb-0">Suhu R.Sistem</p>
@@ -77,52 +62,64 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+          </div>
+         <div class="row mb-3">
+            <div class="col-md-6 col-lg-3 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex align-items-center justify-content-md-center">
-                      <i class="fa fa-minus-circle icon-lg text-danger"></i>
+                      <i class="fa fa-thermometer-1 icon-lg text-primary"></i>
                       <div class="ml-3">
-                        <p class="mb-0">Resiko Kebakaran</p>
-                        <h6>Berbahaya</h6>
-                      </div>
+                        <p class="mb-0">Kondisi Gas</p>
+                        <h6>Aman</h6>
                       </div>
                     </div>
                   </div>
                 </div>
             </div>
+          </div>
           <div class="row grid-margin">
-            <div class="col-12">
+            <div class="col-lg">
               <div class="card">
                 <div class="card-body">
                   <h2 class="card-title text-center text-disabled">Grafik Sensor</h2>
                   <hr>
-                  <div class="row mt-3">
-                    <div class="col-lg-4 grid-margin stretch-card">
+                  <div class="row mt-3">               
+                    <div class="col-lg grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">Pilih Grafik</h4>
-                          <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Pilih Sensor
-                            </a>
-                          
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#">Sensor Suhu Reaktor</a>
-                              <a class="dropdown-item" href="#">Sensor Volume Biogas</a>
-                              <a class="dropdown-item" href="#">Sensor Tekanan reaktor Biogas</a>
-                              <a class="dropdown-item" href="#">Sensor Suhu Kolektor</a>
-
-                            </div>
-                          </div>
+                          <h4 class="card-title" id="title">Grafik Sensor Suhu Reaktor</h4>
+                          <canvas id="myChart"></canvas>  
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-8 grid-margin stretch-card">
+                  </div>
+                  <div class="row mt-3">               
+                    <div class="col-lg grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">Grafik Sensor Suhu Reaktor</h4>
-                          <canvas id="myChart" width="400" height="400"></canvas>
+                          <h4 class="card-title" id="title">Grafik Volume Biogas</h4>
+                          <canvas id="vChart"></canvas>  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">               
+                    <div class="col-lg grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title" id="title">Grafik Tekanan Reaktor Biogas</h4>
+                          <canvas id="tChart"></canvas>  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">               
+                    <div class="col-lg grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title" id="title">Grafik Suhu Sistem</h4>
+                          <canvas id="susistemChart"></canvas>  
                         </div>
                       </div>
                     </div>
@@ -138,48 +135,249 @@
 
 @section('js')
     <script>
-        $(function(){
-            $("#dashboard").addClass('active');
-        });
-
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['2020-12-6', '2020-12-6', '2020-12-6', '2020-12-6', '2020-12-6', '2020-12-6'],
+      var ctx = document.getElementById('myChart');
+      ctx.height = 170;
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+                labels: [],
                 datasets: [{
-                    label: 'sensor suhu reaktor',
-                    data: [30, 29, 31, 30, 32, 30],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
+                label: 'Grafik Sensor',
+                data: [],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+                ],
+                  borderWidth: 1
                 }]
             },
-            options: {
+              options: {
                 scales: {
                     yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                      }
+                    }]
+                  }
+                }
+            });
+
+          var ctx1 = document.getElementById('vChart');
+          ctx1.height = 170;
+          var vChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                    labels: [],
+                    datasets: [{
+                    label: 'Grafik Sensor',
+                    data: [],
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                    ],
+                      borderWidth: 1
+                    }]
+                },
+                  options: {
+                    scales: {
+                        yAxes: [{
                         ticks: {
                             beginAtZero: true
-                        }
+                          }
+                        }]
+                      }
+                    }
+                });        
+          
+          var ctx2 = document.getElementById('tChart');
+          ctx2.height = 170;
+          var tChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                    labels: [],
+                    datasets: [{
+                    label: 'Grafik Sensor',
+                    data: [],
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                    ],
+                      borderWidth: 1
                     }]
-                }
-            }
-        });
+                },
+                  options: {
+                    scales: {
+                        yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                          }
+                        }]
+                      }
+                    }
+                });  
 
+          var ctx3 = document.getElementById('susistemChart');
+          ctx3.height = 170;
+          var sChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                    labels: [],
+                    datasets: [{
+                    label: 'Grafik Sensor',
+                    data: [],
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                    ],
+                      borderWidth: 1
+                    }]
+                },
+                  options: {
+                    scales: {
+                        yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                          }
+                        }]
+                      }
+                    }
+                });  
+
+            //ajax request 
+            var rsuhu = setInterval(RsuhuChart, 5000);
+            function RsuhuChart()
+              {
+                $.ajax({
+                  url: "{{ route('api.chart') }}",
+                  type: 'GET',
+                  dataType: 'json',
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  success: function(data) {
+                    myChart.data.labels = data.labels;
+                    myChart.data.datasets[0].data = data.data;
+                    myChart.update();
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
+            }
+
+            var volume = setInterval(volumeChart, 5000);
+            function volumeChart()
+              {
+                $.ajax({
+                  url: "{{ route('api.cjarak') }}",
+                  type: 'GET',
+                  dataType: 'json',
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  success: function(data) {
+                   vChart.data.labels = data.labels;
+                   vChart.data.datasets[0].data = data.data;
+                   vChart.update();
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
+            }
+
+            var bmp = setInterval(tekanan, 5000);
+            function tekanan()
+              {
+                $.ajax({
+                  url: "{{ route('api.cbmp') }}",
+                  type: 'GET',
+                  dataType: 'json',
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  success: function(data) {
+                   tChart.data.labels = data.labels;
+                   tChart.data.datasets[0].data = data.data;
+                   tChart.update();
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
+            }
+        
+            var susistem = setInterval(susistem, 5000);
+            function susistem()
+              {
+                $.ajax({
+                  url: "{{ route('api.csusistem') }}",
+                  type: 'GET',
+                  dataType: 'json',
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  success: function(data) {
+                    sChart.data.labels = data.labels;
+                    sChart.data.datasets[0].data = data.data;
+                    sChart.update();
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
+            }
+         
+           
+      
   
     </script>
 @endsection

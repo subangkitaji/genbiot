@@ -17,7 +17,9 @@
                     <i class="fa fa-thermometer-1 icon-lg text-success"></i>
                     <div class="ml-3">
                       <p class="mb-0">Suhu Reaktor</p>
-                      <h6>30 &#8451;</h6>
+                      <div class="rsuhu" id="rsuhu">
+                        .....
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -30,7 +32,9 @@
                     <i class="fa fa-flask icon-lg text-warning"></i>
                     <div class="ml-3">
                       <p class="mb-0">Volume Biogas</p>
-                      <h6>48 Lt</h6>
+                      <div class="volume" id="volume">
+                        .....
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -43,7 +47,9 @@
                     <i class="fa fa-adjust icon-lg text-info"></i>
                     <div class="ml-3">
                       <p class="mb-0">Tekanan reaktor Biogas</p>
-                      <h6>1 atm</h6>
+                      <div class="bmp" id="bmp">
+                        .....
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -56,7 +62,9 @@
                     <i class="fa fa-thermometer-1 icon-lg text-primary"></i>
                     <div class="ml-3">
                       <p class="mb-0">Suhu R.Sistem</p>
-                      <h6>25 &#8451;</h6>
+                      <div class="susistem" id="susistem">
+                        .....
+                      </div>
                     </div>
                     </div>
                   </div>
@@ -306,6 +314,8 @@
                     myChart.data.labels = data.labels;
                     myChart.data.datasets[0].data = data.data;
                     myChart.update();
+                    document.getElementById('rsuhu').innerHTML = `<h6>` + data.latest_data + ` &#8451;</h6>
+                    <small class="text-success">`+ data.latestLabels +`</small>`;
                   },
                   error: function(data){
                     console.log(data);
@@ -327,6 +337,9 @@
                    vChart.data.labels = data.labels;
                    vChart.data.datasets[0].data = data.data;
                    vChart.update();
+                   
+                   document.getElementById('volume').innerHTML = `<h6>` + data.latest_data + ` Lt</h6>
+                    <small class="text-success">`+ data.latestLabels +`</small>`;
                   },
                   error: function(data){
                     console.log(data);
@@ -348,6 +361,8 @@
                    tChart.data.labels = data.labels;
                    tChart.data.datasets[0].data = data.data;
                    tChart.update();
+                   document.getElementById('bmp').innerHTML = `<h6>` + data.latest_data + ` </h6>
+                    <small class="text-success">`+ data.latestLabels +`</small>`;
                   },
                   error: function(data){
                     console.log(data);
@@ -369,6 +384,8 @@
                     sChart.data.labels = data.labels;
                     sChart.data.datasets[0].data = data.data;
                     sChart.update();
+                    document.getElementById('susistem').innerHTML = `<h6>` + data.latest_data + ` Lt</h6>
+                    <small class="text-success">`+ data.latestLabels +`</small>`;
                   },
                   error: function(data){
                     console.log(data);

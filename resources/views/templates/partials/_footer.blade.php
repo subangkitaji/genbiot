@@ -3,6 +3,7 @@
 <script src="{{ asset('public/assets/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('public/assets/node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
 <script src="{{ asset('public/assets/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('public/assets/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js')}}"></script>
 <!-- endinject -->
 
 

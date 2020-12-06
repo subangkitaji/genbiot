@@ -6,9 +6,8 @@
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-        <span class="icon-menu"></span>
+            <span class="icon-menu"></span>
       </button>
-
       <ul class="navbar-nav">
         <li class="nav-item  d-none d-lg-flex show">
           <a class="nav-link nav-btn">

@@ -79,7 +79,9 @@
                       <i class="fa fa-thermometer-1 icon-lg text-primary"></i>
                       <div class="ml-3">
                         <p class="mb-0">Kondisi Gas</p>
-                        <h6>Aman</h6>
+                        <div class="gas" id="gas">
+                           .....
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -392,7 +394,35 @@
                   }
                 });
             }
-         
+
+            var gas = setInterval(gas, 5000);
+            function gas()
+              {
+                $.ajax({
+                  url: "{{ route('api.cgas') }}",
+                  type: 'GET',
+                  dataType: 'json',
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  success: function(data) {
+                   var gas = data.data;
+                   console.log(gas)
+                   if(gas > 150)
+                   {
+                   document.getElementById('gas').innerHTML = `<h6>Aman</h6>
+                    <small class="text-success">`;
+                     
+                   }else {
+                    document.getElementById('gas').innerHTML = `<h6>Gas</h6>`;
+                   }
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
+            }
+        
            
       
   

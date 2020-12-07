@@ -61,9 +61,9 @@ class ChartsApiController extends Controller
     public function cgas()
     {
         $gas = Gas::latest()->take(1)->get();
-        $labels = $gas->pluck('created_at');
+        
         $data = $gas->pluck('gas');
 
-        return response()->json(compact('labels', 'data'));
+        return response()->json(compact('data'));
     }
 }
